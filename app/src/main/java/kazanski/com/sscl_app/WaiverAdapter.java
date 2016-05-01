@@ -34,11 +34,13 @@ public class WaiverAdapter extends ArrayAdapter<Waiver> {
         TextView waiverPK = (TextView) convertView.findViewById(R.id.waiverPK);
         waiverPK.setText(String.valueOf(waiver.pk));
 
+        ImageView waiverImage = (ImageView) convertView.findViewById(R.id.waiverImage);
         if (waiver.image != "null") {
-            ImageView waiverImage = (ImageView) convertView.findViewById(R.id.waiverImage);
             byte[] decodedString = Base64.decode(waiver.image, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             waiverImage.setImageBitmap(decodedByte);
+        } else {
+            waiverImage.setImageResource(R.drawable.ic_camera_enhance);
         }
 
         TextView waiverName = (TextView) convertView.findViewById(R.id.waiverName);
